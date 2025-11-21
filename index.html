@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Beranda OSIS</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50">
+
+  <!-- NAVBAR -->
+  <nav class="bg-white shadow p-4 flex gap-4 justify-center font-semibold">
+    <a href="index.html">Beranda</a>
+    <a href="vote.html">Form Pemilihan</a>
+    <a href="results.html">Hasil Voting</a>
+  </nav>
+
+  <div class="max-w-5xl mx-auto mt-10 p-6">
+    <h1 class="text-center text-3xl font-bold mb-8">Calon Ketua & Wakil Ketua OSIS</h1>
+
+    <div id="candidate-container" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    const container = document.getElementById("candidate-container");
+
+    candidates.forEach(c => {
+      container.innerHTML += `
+        <div class="candidate-card p-6 bg-white shadow rounded-xl text-center">
+          <div class="text-4xl font-bold bg-blue-600 text-white rounded-full w-20 h-20 mx-auto flex justify-center items-center">
+            ${c.number}
+          </div>
+
+          <h3 class="mt-4 font-bold">Ketua: ${c.ketua}</h3>
+          <h3 class="font-bold">Wakil: ${c.wakil}</h3>
+
+          <p class="mt-2 text-slate-500">${c.visi}</p>
+
+          <a href="vote.html" class="block mt-4 bg-blue-600 text-white p-2 rounded-lg font-bold">
+            Pilih Pasangan ${c.number}
+          </a>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

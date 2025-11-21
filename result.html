@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Hasil Voting OSIS</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50">
+
+  <!-- NAVBAR -->
+  <nav class="bg-white shadow p-4 flex gap-4 justify-center font-semibold">
+    <a href="index.html">Beranda</a>
+    <a href="vote.html">Form Pemilihan</a>
+    <a href="results.html">Hasil Voting</a>
+  </nav>
+
+  <div class="max-w-4xl mx-auto mt-10 p-6">
+    <h1 class="text-3xl font-bold text-center mb-8">Hasil Perhitungan Suara</h1>
+
+    <div class="bg-white shadow p-6 rounded-xl text-center mb-10">
+      <p class="text-slate-500">Total Suara Masuk</p>
+      <p id="total-votes" class="text-5xl font-bold text-blue-600">0</p>
+    </div>
+
+    <div id="result-container" class="space-y-6"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("total-votes").textContent = totalVotes();
+
+    const container = document.getElementById("result-container");
+
+    candidates.forEach(c => {
+      let count = countVotes(c.id);
+      let total = totalVotes();
+      let percent = total > 0 ? ((count / total) * 100).toFixed(1) : 0;
+
+      container.innerHTML += `
+        <div class="bg-white p-6 rounded-xl shadow">
+          <div class="flex justify-between items-center mb-3">
+            <div>
+              <h3 class="font-bold text-xl">Pasangan ${c.number}</h3>
+              <p>${c.ketua} & ${c.wakil}</p>
+              <p class="text-slate-500">${count} suara</p>
+            </div>
+            <p class="text-3xl font-bold text-blue-600">${percent}%</p>
+          </div>
+
+          <div class="w-full bg-blue-100 h-4 rounded-full overflow-hidden">
+            <div class="progress-bar bg-blue-600 h-4 rounded-full" style="width: ${percent}%"></div>
+          </div>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+body {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, sans-serif;
+}
+
+.candidate-card {
+  transition: all 0.3s ease;
+}
+
+.candidate-card:hover {
+  transform: translateY(-4px);
+}
+
+.vote-button {
+  transition: all 0.2s ease;
+}
+
+.vote-button:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  z-index: 1000;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.progress-bar {
+  transition: width 0.5s ease;
+}

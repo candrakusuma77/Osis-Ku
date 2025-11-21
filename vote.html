@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Pemilihan OSIS</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50">
+
+  <!-- NAVBAR -->
+  <nav class="bg-white shadow p-4 flex gap-4 justify-center font-semibold">
+    <a href="index.html">Beranda</a>
+    <a href="vote.html">Form Pemilihan</a>
+    <a href="results.html">Hasil Voting</a>
+  </nav>
+
+  <div class="max-w-lg mx-auto mt-10 bg-white shadow p-6 rounded-xl">
+    <h1 class="text-2xl font-bold mb-6 text-center">Form Pemilihan Ketua OSIS</h1>
+
+    <label>Nama Lengkap:</label>
+    <input id="voter-name" type="text" class="w-full border p-2 rounded mb-4">
+
+    <label>Kelas:</label>
+    <input id="voter-class" type="text" class="w-full border p-2 rounded mb-4">
+
+    <label>Pilih Pasangan:</label>
+    <select id="candidate-select" class="w-full border p-2 rounded mb-4">
+      <option value="">-- pilih --</option>
+    </select>
+
+    <button id="submit-vote" class="w-full bg-blue-600 text-white p-2 rounded font-bold">Kirim Suara</button>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    const select = document.getElementById("candidate-select");
+
+    candidates.forEach(c => {
+      select.innerHTML += `<option value="${c.id}">Pasangan ${c.number}</option>`;
+    });
+
+    document.getElementById("submit-vote").onclick = function () {
+      const name = document.getElementById("voter-name").value.trim();
+      const kelas = document.getElementById("voter-class").value.trim();
+      const pair = select.value;
+
+      if (!name || !kelas || !pair) {
+        showToast("Semua data harus diisi!", "error");
+        return;
+      }
+
+      saveVote({ name, kelas, pair });
+      showToast("Suara Anda berhasil disimpan!", "success");
+
+      document.getElementById("voter-name").value = "";
+      document.getElementById("voter-class").value = "";
+      select.value = "";
+    };
+  </script>
+</body>
+</html>
